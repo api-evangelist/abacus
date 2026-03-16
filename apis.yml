@@ -1,59 +1,44 @@
+aid: abacus
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/apis.yml
 name: Abacus
-description: APIs for the Abacus platform
-image: https://example.com/abacus-logo.png
-url: https://www.abacus.com
-created: '2024'
-modified: '2024'
-apis:
-- name: Abacus Expense API
-  description: API for managing expense reports, receipts, and reimbursements
-  image: https://example.com/abacus-expense-icon.png
-  humanURL: https://www.abacus.com/expense-api
-  baseURL: https://api.abacus.com/v1
-  tags:
-  - expenses
-  - receipts
-  - reimbursement
-  - finance
-  properties:
-  - type: Documentation
-    url: https://docs.abacus.com/expense-api
-  - type: OpenAPI
-    url: https://api.abacus.com/v1/openapi.json
-  - type: Authentication
-    url: https://docs.abacus.com/authentication
-  - type: Postman Collection
-    url: https://www.postman.com/abacus/expense-api
-  contact:
-  - type: Support
-    url: https://support.abacus.com
-  - type: Email
-    url: mailto:api@abacus.com
-- name: Abacus Reports API
-  description: API for generating and retrieving expense reports and analytics
-  image: https://example.com/abacus-reports-icon.png
-  humanURL: https://www.abacus.com/reports-api
-  baseURL: https://api.abacus.com/v1
-  tags:
-  - reports
-  - analytics
-  - finance
-  - data
-  properties:
-  - type: Documentation
-    url: https://docs.abacus.com/reports-api
-  - type: OpenAPI
-    url: https://api.abacus.com/v1/reports/openapi.json
-  contact:
-  - type: Support
-    url: https://support.abacus.com
-include: []
-maintainers:
-- name: Abacus API Team
-  email: api@abacus.com
-  url: https://www.abacus.com/about
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- expense management
-- finance
-- reimbursement
-- accounting
+  - Expense Management
+  - Finance
+  - Reimbursement
+  - Accounting
+description: >-
+  Abacus is an expense management platform that allows businesses to streamline
+  expense reporting, receipts, and reimbursements. The Abacus API is available
+  to partners and enterprise customers, providing programmatic access to member
+  management and expense operations using OAuth 2.0 authentication.
+created: '2024-01-15'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: abacus:abacus-api
+    name: Abacus API
+    tags:
+      - Expenses
+      - Finance
+    humanURL: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+    baseURL: https://api.abacus.com
+    properties:
+      - url: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+        type: Documentation
+    description: >-
+      The Abacus API provides programmatic access to expense management
+      functionality, including inviting and suspending members, and integrating
+      with third-party platforms. Available to partners and enterprise customers.
+common:
+  - type: Website
+    url: https://www.abacus.com/
+  - type: Documentation
+    url: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+  - type: Support
+    url: https://support.abacus.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
