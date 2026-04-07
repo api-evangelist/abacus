@@ -5,10 +5,10 @@ name: Abacus
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Accounting
   - Expense Management
   - Finance
   - Reimbursement
-  - Accounting
 description: >-
   Abacus is an expense management platform that allows businesses to streamline
   expense reporting, receipts, and reimbursements. The Abacus API is available
