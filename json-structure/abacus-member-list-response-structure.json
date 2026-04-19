@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-structure/abacus-member-list-response-structure.json",
+  "name": "MemberListResponse",
+  "description": "Paginated list of members",
+  "type": "object",
+  "properties": {
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Member"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of members",
+      "example": 125
+    },
+    "page": {
+      "type": "integer",
+      "description": "Current page number",
+      "example": 1
+    },
+    "per_page": {
+      "type": "integer",
+      "description": "Number of results per page",
+      "example": 25
+    }
+  }
+}

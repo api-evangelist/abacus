@@ -1,0 +1,337 @@
+rules:
+
+  # INFO / METADATA
+  info-title-required:
+    description: API info must have a title
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+
+  info-title-prefix:
+    description: API title should start with "Abacus"
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Abacus"
+
+  info-description-required:
+    description: API info must have a description
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: API info must have a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: API info should have contact information
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version-3:
+    description: Should use OpenAPI 3.x
+    severity: warn
+    given: "$"
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # SERVERS
+  servers-defined:
+    description: Servers must be defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: Server URLs must use HTTPS
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-description:
+    description: Each server should have a description
+    severity: warn
+    given: "$.servers[*]"
+    then:
+      field: description
+      function: truthy
+
+  # PATHS — NAMING CONVENTIONS
+  paths-kebab-case:
+    description: Path segments should use kebab-case or snake_case with underscores
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\\/([a-z0-9_{}/-]+))*\\/?$"
+
+  paths-no-trailing-slash:
+    description: Paths should not have trailing slashes
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\/$"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,options,head]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Operation summaries should start with "Abacus"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,options,head].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Abacus"
+
+  operation-description-required:
+    description: Every operation must have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,options,head]"
+    then:
+      field: description
+      function: truthy
+
+  operation-id-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,options,head]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-id-camel-case:
+    description: operationId should use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,options,head].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  operation-tags-required:
+    description: Every operation must have at least one tag
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,options,head]"
+    then:
+      field: tags
+      function: truthy
+
+  # TAGS
+  tag-global-defined:
+    description: Tags used in operations should be defined at the global level
+    severity: warn
+    given: "$.tags"
+    then:
+      function: truthy
+
+  tag-description:
+    description: Global tags should have descriptions
+    severity: info
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: All parameters must have a description
+    severity: warn
+    given: "$..parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-snake-case:
+    description: Parameter names should use snake_case
+    severity: warn
+    given: "$.paths[*][*].parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  # REQUEST BODIES
+  request-body-content-json:
+    description: Request bodies should use application/json content type
+    severity: info
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+
+  # RESPONSES
+  response-success-required:
+    description: Operations must have at least one 2xx response
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: responses
+      function: truthy
+
+  response-description-required:
+    description: All responses must have a description
+    severity: error
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-401-for-auth:
+    description: Endpoints should document 401 Unauthorized responses
+    severity: warn
+    given: "$.paths[*][get,post,put,delete].responses"
+    then:
+      function: truthy
+
+  response-404-for-resource-endpoints:
+    description: Endpoints with path parameters should document 404 responses
+    severity: warn
+    given: "$.paths[*][get,put,delete].responses"
+    then:
+      function: truthy
+
+  # SCHEMAS — PROPERTY NAMING
+  schema-description-recommended:
+    description: Top-level schemas should have descriptions
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-property-description:
+    description: Schema properties should have descriptions
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-property-snake-case:
+    description: Schema property names should use snake_case
+    severity: warn
+    given: "$.components.schemas[*].properties"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  # SECURITY
+  security-schemes-defined:
+    description: Security schemes should be defined in components
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  security-scheme-description:
+    description: Security schemes should have descriptions
+    severity: warn
+    given: "$.components.securitySchemes[*]"
+    then:
+      field: description
+      function: truthy
+
+  security-global-defined:
+    description: Global security should be defined
+    severity: warn
+    given: "$"
+    then:
+      field: security
+      function: truthy
+
+  security-oauth2-scopes:
+    description: OAuth2 scopes should be defined
+    severity: info
+    given: "$.components.securitySchemes[?(@.type == 'oauth2')]"
+    then:
+      function: truthy
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET operations should not have request bodies
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: requestBody
+      function: falsy
+
+  delete-no-request-body:
+    description: DELETE operations should not have request bodies
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      field: requestBody
+      function: falsy
+
+  # GENERAL QUALITY
+  no-empty-descriptions:
+    description: Descriptions should not be empty strings
+    severity: error
+    given: "$..description"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^\\s*$"
+
+  examples-on-schemas:
+    description: Schema properties should have examples for better DX
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: example
+      function: truthy
+
+  microcks-operation-extension:
+    description: Operations should have x-microcks-operation for mock compatibility
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: x-microcks-operation
+      function: truthy
+
+  pagination-params-standard:
+    description: Paginated endpoints should use standard page/per_page parameters
+    severity: info
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(page|per_page|cursor|limit|offset|sort|order|status|from_date|to_date|member_id|[a-z_]+)$"

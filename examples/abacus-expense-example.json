@@ -1,0 +1,13 @@
+{
+  "id": "exp-500123",
+  "member_id": "500123",
+  "amount": 45.5,
+  "currency": "USD",
+  "category": "meals",
+  "description": "Team lunch",
+  "date": "2025-03-15",
+  "status": "pending",
+  "receipt_url": "https://api.abacus.com/receipts/abc123",
+  "created_at": "2025-03-15T14:30:00Z",
+  "updated_at": "2025-03-16T10:00:00Z"
+}

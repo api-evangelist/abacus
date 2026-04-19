@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-structure/abacus-update-member-request-structure.json",
+  "name": "UpdateMemberRequest",
+  "description": "Request body for updating an existing member",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "New role for the member",
+      "enum": [
+        "employee",
+        "manager",
+        "admin"
+      ],
+      "example": "manager"
+    },
+    "department": {
+      "type": "string",
+      "description": "New department for the member",
+      "example": "Engineering"
+    },
+    "status": {
+      "type": "string",
+      "description": "New status for the member",
+      "enum": [
+        "active",
+        "suspended"
+      ],
+      "example": "active"
+    }
+  }
+}

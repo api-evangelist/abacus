@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-request-schema.json",
+  "title": "OAuthTokenRequest",
+  "description": "OAuth 2.0 token request using client credentials",
+  "type": "object",
+  "properties": {
+    "grant_type": {
+      "type": "string",
+      "description": "OAuth grant type",
+      "enum": [
+        "client_credentials"
+      ],
+      "example": "client_credentials"
+    },
+    "client_id": {
+      "type": "string",
+      "description": "OAuth client ID",
+      "example": "example-client-id"
+    },
+    "client_secret": {
+      "type": "string",
+      "description": "OAuth client secret",
+      "example": "example-client-secret"
+    }
+  },
+  "required": [
+    "grant_type",
+    "client_id",
+    "client_secret"
+  ]
+}

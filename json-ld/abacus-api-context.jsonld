@@ -1,0 +1,122 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "abacus": "https://api.abacus.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Expense": "abacus:Expense",
+    "ExpenseListResponse": "abacus:ExpenseListResponse",
+    "InviteMemberRequest": "abacus:InviteMemberRequest",
+    "Member": "abacus:Member",
+    "MemberListResponse": "abacus:MemberListResponse",
+    "OAuthTokenRequest": "abacus:OAuthTokenRequest",
+    "OAuthTokenResponse": "abacus:OAuthTokenResponse",
+    "UpdateMemberRequest": "abacus:UpdateMemberRequest",
+    "expenses": {
+      "@id": "abacus:expenses",
+      "@container": "@set"
+    },
+    "total": {
+      "@id": "abacus:total",
+      "@type": "xsd:integer"
+    },
+    "page": {
+      "@id": "abacus:page",
+      "@type": "xsd:integer"
+    },
+    "perPage": {
+      "@id": "abacus:per_page",
+      "@type": "xsd:integer"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "firstName": {
+      "@id": "abacus:first_name",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "abacus:last_name",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "abacus:role",
+      "@type": "xsd:string"
+    },
+    "department": {
+      "@id": "abacus:department",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "abacus:id",
+      "@type": "xsd:string"
+    },
+    "memberId": {
+      "@id": "abacus:member_id",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "abacus:amount",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "abacus:currency",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "abacus:category",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "date": {
+      "@id": "abacus:date",
+      "@type": "xsd:date"
+    },
+    "status": {
+      "@id": "abacus:status",
+      "@type": "xsd:string"
+    },
+    "receiptUrl": {
+      "@id": "abacus:receipt_url"
+    },
+    "createdAt": {
+      "@id": "abacus:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "abacus:updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "grantType": {
+      "@id": "abacus:grant_type",
+      "@type": "xsd:string"
+    },
+    "clientId": {
+      "@id": "abacus:client_id",
+      "@type": "xsd:string"
+    },
+    "clientSecret": {
+      "@id": "abacus:client_secret",
+      "@type": "xsd:string"
+    },
+    "members": {
+      "@id": "abacus:members",
+      "@container": "@set"
+    },
+    "accessToken": {
+      "@id": "abacus:access_token",
+      "@type": "xsd:string"
+    },
+    "tokenType": {
+      "@id": "abacus:token_type",
+      "@type": "xsd:string"
+    },
+    "expiresIn": {
+      "@id": "abacus:expires_in",
+      "@type": "xsd:integer"
+    }
+  }
+}

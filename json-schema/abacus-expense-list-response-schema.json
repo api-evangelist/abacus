@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-list-response-schema.json",
+  "title": "ExpenseListResponse",
+  "description": "Paginated list of expenses",
+  "type": "object",
+  "properties": {
+    "expenses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Expense"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of expenses",
+      "example": 250
+    },
+    "page": {
+      "type": "integer",
+      "description": "Current page number",
+      "example": 1
+    },
+    "per_page": {
+      "type": "integer",
+      "description": "Number of results per page",
+      "example": 25
+    }
+  }
+}

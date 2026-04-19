@@ -1,0 +1,7 @@
+{
+  "email": "newuser@example.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "role": "employee",
+  "department": "Engineering"
+}

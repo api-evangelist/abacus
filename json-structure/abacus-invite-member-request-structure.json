@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-structure/abacus-invite-member-request-structure.json",
+  "name": "InviteMemberRequest",
+  "description": "Request body for inviting a new member",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Email address for the new member",
+      "example": "newuser@example.com"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First name of the new member",
+      "example": "John"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name of the new member",
+      "example": "Doe"
+    },
+    "role": {
+      "type": "string",
+      "description": "Role to assign to the new member",
+      "enum": [
+        "employee",
+        "manager",
+        "admin"
+      ],
+      "default": "employee",
+      "example": "employee"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department to assign the new member to",
+      "example": "Engineering"
+    }
+  },
+  "required": [
+    "email",
+    "first_name",
+    "last_name"
+  ]
+}

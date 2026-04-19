@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-schema.json",
+  "title": "Member",
+  "description": "An organization member with expense management access",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique member identifier",
+      "example": "500123"
+    },
+    "email": {
+      "type": "string",
+      "description": "Member email address",
+      "example": "jsmith@example.com"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "Member first name",
+      "example": "Jane"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Member last name",
+      "example": "Smith"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current member status",
+      "enum": [
+        "active",
+        "invited",
+        "suspended"
+      ],
+      "example": "active"
+    },
+    "role": {
+      "type": "string",
+      "description": "Member role in the organization",
+      "enum": [
+        "employee",
+        "manager",
+        "admin"
+      ],
+      "example": "employee"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department the member belongs to",
+      "example": "Engineering"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the member was created",
+      "example": "2025-01-15T09:00:00Z"
+    }
+  }
+}

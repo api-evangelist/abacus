@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-structure/abacus-expense-structure.json",
+  "name": "Expense",
+  "description": "An expense report submitted by a member",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique expense identifier",
+      "example": "exp-500123"
+    },
+    "member_id": {
+      "type": "string",
+      "description": "ID of the member who submitted the expense",
+      "example": "500123"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Expense amount",
+      "example": 45.5
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)",
+      "example": "USD"
+    },
+    "category": {
+      "type": "string",
+      "description": "Expense category",
+      "enum": [
+        "meals",
+        "travel",
+        "lodging",
+        "office_supplies",
+        "software",
+        "other"
+      ],
+      "example": "meals"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the expense",
+      "example": "Team lunch"
+    },
+    "date": {
+      "type": "date",
+      "description": "Date of the expense",
+      "example": "2025-03-15"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the expense",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "reimbursed"
+      ],
+      "example": "pending"
+    },
+    "receipt_url": {
+      "type": "uri",
+      "description": "URL to the uploaded receipt",
+      "example": "https://api.abacus.com/receipts/abc123"
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "Timestamp when the expense was created",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "updated_at": {
+      "type": "datetime",
+      "description": "Timestamp when the expense was last updated",
+      "example": "2025-03-16T10:00:00Z"
+    }
+  }
+}
