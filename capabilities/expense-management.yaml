@@ -1,215 +1,344 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Abacus Expense Management"
-  description: "Unified workflow for managing employee expenses, reimbursements, and member provisioning. Enables finance teams and administrators to automate expense reporting, track spending by member or category, and manage organizational membership."
+  label: Abacus Expense Management
+  description: Unified workflow for managing employee expenses, reimbursements, and member provisioning. Enables finance teams
+    and administrators to automate expense reporting, track spending by member or category, and manage organizational membership.
   tags:
-    - Abacus
-    - Expense Management
-    - Finance
-    - Reimbursement
-    - Members
-  created: "2026-04-19"
-  modified: "2026-04-19"
-
+  - Abacus
+  - Expense Management
+  - Finance
+  - Reimbursement
+  - Members
+  created: '2026-04-19'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      ABACUS_CLIENT_ID: ABACUS_CLIENT_ID
-      ABACUS_CLIENT_SECRET: ABACUS_CLIENT_SECRET
-
+- namespace: env
+  keys:
+    ABACUS_CLIENT_ID: ABACUS_CLIENT_ID
+    ABACUS_CLIENT_SECRET: ABACUS_CLIENT_SECRET
 capability:
   consumes:
-    - import: abacus-api
-      location: ./shared/abacus-api.yaml
-
+  - type: http
+    namespace: abacus-api
+    baseUri: https://api.abacus.com
+    description: Abacus expense management API
+    authentication:
+      type: bearer
+      token: '{{ABACUS_ACCESS_TOKEN}}'
+    resources:
+    - name: members
+      path: /members
+      description: Member management operations
+      operations:
+      - name: list-members
+        method: GET
+        description: List all organization members
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number
+        - name: per_page
+          in: query
+          type: integer
+          required: false
+          description: Results per page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invite-member
+        method: POST
+        description: Invite a new member to the organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: member
+      path: /members/{member_id}
+      description: Individual member operations
+      operations:
+      - name: get-member
+        method: GET
+        description: Get details for a specific member
+        inputParameters:
+        - name: member_id
+          in: path
+          type: string
+          required: true
+          description: Member identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-member
+        method: PUT
+        description: Update a member's details
+        inputParameters:
+        - name: member_id
+          in: path
+          type: string
+          required: true
+          description: Member identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: suspend-member
+      path: /members/{member_id}/suspend
+      description: Member suspension operations
+      operations:
+      - name: suspend-member
+        method: POST
+        description: Suspend a member from the organization
+        inputParameters:
+        - name: member_id
+          in: path
+          type: string
+          required: true
+          description: Member identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: expenses
+      path: /expenses
+      description: Expense report operations
+      operations:
+      - name: list-expenses
+        method: GET
+        description: List expense reports with filtering options
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by expense status
+        - name: member_id
+          in: query
+          type: string
+          required: false
+          description: Filter by member ID
+        - name: from_date
+          in: query
+          type: string
+          required: false
+          description: Filter from date
+        - name: to_date
+          in: query
+          type: string
+          required: false
+          description: Filter to date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: expense
+      path: /expenses/{expense_id}
+      description: Individual expense operations
+      operations:
+      - name: get-expense
+        method: GET
+        description: Get details for a specific expense report
+        inputParameters:
+        - name: expense_id
+          in: path
+          type: string
+          required: true
+          description: Expense identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: expense-management-api
-      description: "Unified REST API for Abacus expense management and member administration."
-      resources:
-        - path: /v1/members
-          name: members
-          description: "Organization member management"
-          operations:
-            - method: GET
-              name: list-members
-              description: "List all organization members"
-              call: "abacus-api.list-members"
-              with:
-                page: "rest.page"
-                per_page: "rest.per_page"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: invite-member
-              description: "Invite a new member to the organization"
-              call: "abacus-api.invite-member"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/members/{member_id}
-          name: member
-          description: "Individual member operations"
-          operations:
-            - method: GET
-              name: get-member
-              description: "Get member details"
-              call: "abacus-api.get-member"
-              with:
-                member_id: "rest.member_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-member
-              description: "Update member role or department"
-              call: "abacus-api.update-member"
-              with:
-                member_id: "rest.member_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/members/{member_id}/suspend
-          name: suspend-member
-          description: "Member suspension"
-          operations:
-            - method: POST
-              name: suspend-member
-              description: "Suspend a member"
-              call: "abacus-api.suspend-member"
-              with:
-                member_id: "rest.member_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/expenses
-          name: expenses
-          description: "Expense report management"
-          operations:
-            - method: GET
-              name: list-expenses
-              description: "List expense reports with filters"
-              call: "abacus-api.list-expenses"
-              with:
-                status: "rest.status"
-                member_id: "rest.member_id"
-                from_date: "rest.from_date"
-                to_date: "rest.to_date"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/expenses/{expense_id}
-          name: expense
-          description: "Individual expense report"
-          operations:
-            - method: GET
-              name: get-expense
-              description: "Get expense report details"
-              call: "abacus-api.get-expense"
-              with:
-                expense_id: "rest.expense_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: expense-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted expense management and member administration."
-      tools:
-        - name: list-members
-          description: "List all members in the organization with pagination support"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "abacus-api.list-members"
-          with:
-            page: "tools.page"
-            per_page: "tools.per_page"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: invite-member
-          description: "Invite a new member to the organization with email and role assignment"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "abacus-api.invite-member"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-member
-          description: "Get detailed information for a specific organization member"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "abacus-api.get-member"
-          with:
-            member_id: "tools.member_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: update-member
-          description: "Update a member's role, department, or status within the organization"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "abacus-api.update-member"
-          with:
-            member_id: "tools.member_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: suspend-member
-          description: "Suspend an organization member to prevent expense submissions"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "abacus-api.suspend-member"
-          with:
-            member_id: "tools.member_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-expenses
-          description: "List expense reports with filtering by status, member, or date range"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "abacus-api.list-expenses"
-          with:
-            status: "tools.status"
-            member_id: "tools.member_id"
-            from_date: "tools.from_date"
-            to_date: "tools.to_date"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-expense
-          description: "Get detailed information for a specific expense report including receipt URL"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "abacus-api.get-expense"
-          with:
-            expense_id: "tools.expense_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: expense-management-api
+    description: Unified REST API for Abacus expense management and member administration.
+    resources:
+    - path: /v1/members
+      name: members
+      description: Organization member management
+      operations:
+      - method: GET
+        name: list-members
+        description: List all organization members
+        call: abacus-api.list-members
+        with:
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: invite-member
+        description: Invite a new member to the organization
+        call: abacus-api.invite-member
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/members/{member_id}
+      name: member
+      description: Individual member operations
+      operations:
+      - method: GET
+        name: get-member
+        description: Get member details
+        call: abacus-api.get-member
+        with:
+          member_id: rest.member_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-member
+        description: Update member role or department
+        call: abacus-api.update-member
+        with:
+          member_id: rest.member_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/members/{member_id}/suspend
+      name: suspend-member
+      description: Member suspension
+      operations:
+      - method: POST
+        name: suspend-member
+        description: Suspend a member
+        call: abacus-api.suspend-member
+        with:
+          member_id: rest.member_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/expenses
+      name: expenses
+      description: Expense report management
+      operations:
+      - method: GET
+        name: list-expenses
+        description: List expense reports with filters
+        call: abacus-api.list-expenses
+        with:
+          status: rest.status
+          member_id: rest.member_id
+          from_date: rest.from_date
+          to_date: rest.to_date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/expenses/{expense_id}
+      name: expense
+      description: Individual expense report
+      operations:
+      - method: GET
+        name: get-expense
+        description: Get expense report details
+        call: abacus-api.get-expense
+        with:
+          expense_id: rest.expense_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: expense-management-mcp
+    transport: http
+    description: MCP server for AI-assisted expense management and member administration.
+    tools:
+    - name: list-members
+      description: List all members in the organization with pagination support
+      hints:
+        readOnly: true
+        openWorld: false
+      call: abacus-api.list-members
+      with:
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invite-member
+      description: Invite a new member to the organization with email and role assignment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: abacus-api.invite-member
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-member
+      description: Get detailed information for a specific organization member
+      hints:
+        readOnly: true
+        openWorld: false
+      call: abacus-api.get-member
+      with:
+        member_id: tools.member_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-member
+      description: Update a member's role, department, or status within the organization
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: abacus-api.update-member
+      with:
+        member_id: tools.member_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-member
+      description: Suspend an organization member to prevent expense submissions
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: abacus-api.suspend-member
+      with:
+        member_id: tools.member_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-expenses
+      description: List expense reports with filtering by status, member, or date range
+      hints:
+        readOnly: true
+        openWorld: false
+      call: abacus-api.list-expenses
+      with:
+        status: tools.status
+        member_id: tools.member_id
+        from_date: tools.from_date
+        to_date: tools.to_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-expense
+      description: Get detailed information for a specific expense report including receipt URL
+      hints:
+        readOnly: true
+        openWorld: false
+      call: abacus-api.get-expense
+      with:
+        expense_id: tools.expense_id
+      outputParameters:
+      - type: object
+        mapping: $.
