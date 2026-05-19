@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Abacus API — Authentication
+  description: 'Abacus API — Authentication. 1 operations. Lead operation: Abacus Get OAuth Token. Self-contained Naftiko
+    capability covering one Abacus business surface.'
+  tags:
+  - Abacus
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABACUS_API_KEY: ABACUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: abacus-authentication
+    baseUri: https://api.abacus.com
+    description: Abacus API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: oauth-token
+      path: /oauth/token
+      operations:
+      - name: getoauthtoken
+        method: POST
+        description: Abacus Get OAuth Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ABACUS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: abacus-authentication-rest
+    port: 8080
+    description: REST adapter for Abacus API — Authentication. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/oauth/token
+      name: oauth-token
+      description: REST surface for oauth-token.
+      operations:
+      - method: POST
+        name: getoauthtoken
+        description: Abacus Get OAuth Token
+        call: abacus-authentication.getoauthtoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: abacus-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Abacus API — Authentication. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: abacus-get-oauth-token
+      description: Abacus Get OAuth Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: abacus-authentication.getoauthtoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

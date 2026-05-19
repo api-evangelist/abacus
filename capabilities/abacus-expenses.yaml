@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Abacus API — Expenses
+  description: 'Abacus API — Expenses. 2 operations. Lead operation: Abacus List Expenses. Self-contained Naftiko capability
+    covering one Abacus business surface.'
+  tags:
+  - Abacus
+  - Expenses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ABACUS_API_KEY: ABACUS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: abacus-expenses
+    baseUri: https://api.abacus.com
+    description: Abacus API — Expenses business capability. Self-contained, no shared references.
+    resources:
+    - name: expenses
+      path: /expenses
+      operations:
+      - name: listexpenses
+        method: GET
+        description: Abacus List Expenses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of results per page
+        - name: status
+          in: query
+          type: string
+          description: Filter by expense status
+        - name: member_id
+          in: query
+          type: string
+          description: Filter expenses by member ID
+        - name: from_date
+          in: query
+          type: string
+          description: Filter expenses from this date (ISO 8601)
+        - name: to_date
+          in: query
+          type: string
+          description: Filter expenses to this date (ISO 8601)
+    - name: expenses-expense_id
+      path: /expenses/{expense_id}
+      operations:
+      - name: getexpense
+        method: GET
+        description: Abacus Get Expense
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ABACUS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: abacus-expenses-rest
+    port: 8080
+    description: REST adapter for Abacus API — Expenses. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/expenses
+      name: expenses
+      description: REST surface for expenses.
+      operations:
+      - method: GET
+        name: listexpenses
+        description: Abacus List Expenses
+        call: abacus-expenses.listexpenses
+        with:
+          page: rest.page
+          per_page: rest.per_page
+          status: rest.status
+          member_id: rest.member_id
+          from_date: rest.from_date
+          to_date: rest.to_date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/expenses/{expense-id}
+      name: expenses-expense-id
+      description: REST surface for expenses-expense_id.
+      operations:
+      - method: GET
+        name: getexpense
+        description: Abacus Get Expense
+        call: abacus-expenses.getexpense
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: abacus-expenses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Abacus API — Expenses. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: abacus-list-expenses
+      description: Abacus List Expenses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: abacus-expenses.listexpenses
+      with:
+        page: tools.page
+        per_page: tools.per_page
+        status: tools.status
+        member_id: tools.member_id
+        from_date: tools.from_date
+        to_date: tools.to_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: abacus-get-expense
+      description: Abacus Get Expense
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: abacus-expenses.getexpense
+      outputParameters:
+      - type: object
+        mapping: $.
