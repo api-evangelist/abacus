@@ -53,11 +53,11 @@ apis:
   - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
     type: JSONSchema
     title: OAuth Token Response
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/abacus-authentication.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/abacus-expenses.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/abacus-members.yaml
   description: The Abacus API provides programmatic access to expense management functionality, including inviting and suspending
     members, listing and retrieving expense reports, and integrating with third-party platforms. Available to partners and
