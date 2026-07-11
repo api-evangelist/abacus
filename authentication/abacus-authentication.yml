@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/abacus-api-openapi.yaml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.abacus.com/oauth/token
+    scopes: 3
+  description: OAuth 2.0 client credentials flow for API authentication
+  sources:
+  - openapi/abacus-api-openapi.yaml
