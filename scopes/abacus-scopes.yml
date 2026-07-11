@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/abacus-api-openapi.yaml
+schemes:
+- name: OAuth2
+  source: openapi/abacus-api-openapi.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.abacus.com/oauth/token
+  description: OAuth 2.0 client credentials flow for API authentication
+scopes:
+- scope: expenses:read
+  description: Read expense reports
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/abacus-api-openapi.yaml
+- scope: members:read
+  description: Read member information
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/abacus-api-openapi.yaml
+- scope: members:write
+  description: Create and update members
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/abacus-api-openapi.yaml
