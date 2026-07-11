@@ -63,6 +63,12 @@ apis:
     members, listing and retrieving expense reports, and integrating with third-party platforms. Available to partners and
     enterprise customers using OAuth 2.0 client credentials.
 common:
+- type: VulnerabilityDisclosure
+  url: security/abacus-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/abacus-domain-security.yml
+- type: Authentication
+  url: authentication/abacus-authentication.yml
 - type: OAuthScopes
   url: scopes/abacus-scopes.yml
 - type: Website
