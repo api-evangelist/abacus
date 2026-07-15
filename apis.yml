@@ -63,6 +63,8 @@ apis:
     members, listing and retrieving expense reports, and integrating with third-party platforms. Available to partners and
     enterprise customers using OAuth 2.0 client credentials.
 common:
+- type: AgenticAccess
+  url: agentic-access/abacus-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/abacus-vulnerability-disclosure.yml
 - type: DomainSecurity
