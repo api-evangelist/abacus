@@ -1,0 +1,435 @@
+openapi: 3.0.3
+info:
+  title: Abacus Authentication Members API
+  version: 1.0.0
+  description: The Abacus API (now part of Emburse Spend) provides programmatic access to expense management functionality, including member management and expense operations. Available to partners and enterprise customers using OAuth 2.0 authentication. The API enables third-party integrations with the Abacus expense platform for automating expense workflows, member provisioning, and data synchronization.
+  contact:
+    name: Abacus Support
+    url: https://support.abacus.com/hc/en-us
+  x-generated-from: documentation
+servers:
+- url: https://api.abacus.com
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: Members
+  description: Member management operations for inviting and managing expense users
+paths:
+  /members:
+    get:
+      tags:
+      - Members
+      summary: Abacus List Members
+      description: Retrieve a list of all members in the organization.
+      operationId: listMembers
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        required: false
+        schema:
+          type: integer
+          default: 1
+        example: 1
+      - name: per_page
+        in: query
+        description: Number of results per page
+        required: false
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+        example: 25
+      responses:
+        '200':
+          description: List of members retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberListResponse'
+              examples:
+                ListMembers200Example:
+                  summary: Default listMembers 200 response
+                  x-microcks-default: true
+                  value:
+                    members:
+                    - id: '500123'
+                      email: jsmith@example.com
+                      first_name: Jane
+                      last_name: Smith
+                      status: active
+                      role: employee
+                    total: 1
+                    page: 1
+                    per_page: 25
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      tags:
+      - Members
+      summary: Abacus Invite Member
+      description: Invite a new member to the organization. Sends an invitation email to the specified address.
+      operationId: inviteMember
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteMemberRequest'
+            examples:
+              InviteMemberRequestExample:
+                summary: Default inviteMember request
+                x-microcks-default: true
+                value:
+                  email: newuser@example.com
+                  first_name: John
+                  last_name: Doe
+                  role: employee
+      responses:
+        '201':
+          description: Member invited successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+              examples:
+                InviteMember201Example:
+                  summary: Default inviteMember 201 response
+                  x-microcks-default: true
+                  value:
+                    id: '500456'
+                    email: newuser@example.com
+                    first_name: John
+                    last_name: Doe
+                    status: invited
+                    role: employee
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '409':
+          description: Member already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /members/{member_id}:
+    get:
+      tags:
+      - Members
+      summary: Abacus Get Member
+      description: Retrieve details for a specific member by their ID.
+      operationId: getMember
+      parameters:
+      - $ref: '#/components/parameters/MemberId'
+      responses:
+        '200':
+          description: Member details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+              examples:
+                GetMember200Example:
+                  summary: Default getMember 200 response
+                  x-microcks-default: true
+                  value:
+                    id: '500123'
+                    email: jsmith@example.com
+                    first_name: Jane
+                    last_name: Smith
+                    status: active
+                    role: employee
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      tags:
+      - Members
+      summary: Abacus Update Member
+      description: Update details for an existing member.
+      operationId: updateMember
+      parameters:
+      - $ref: '#/components/parameters/MemberId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMemberRequest'
+            examples:
+              UpdateMemberRequestExample:
+                summary: Default updateMember request
+                x-microcks-default: true
+                value:
+                  role: manager
+                  department: Engineering
+      responses:
+        '200':
+          description: Member updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+              examples:
+                UpdateMember200Example:
+                  summary: Default updateMember 200 response
+                  x-microcks-default: true
+                  value:
+                    id: '500123'
+                    email: jsmith@example.com
+                    first_name: Jane
+                    last_name: Smith
+                    status: active
+                    role: manager
+                    department: Engineering
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /members/{member_id}/suspend:
+    post:
+      tags:
+      - Members
+      summary: Abacus Suspend Member
+      description: Suspend a member from the organization, preventing them from submitting expenses.
+      operationId: suspendMember
+      parameters:
+      - $ref: '#/components/parameters/MemberId'
+      responses:
+        '200':
+          description: Member suspended successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+              examples:
+                SuspendMember200Example:
+                  summary: Default suspendMember 200 response
+                  x-microcks-default: true
+                  value:
+                    id: '500123'
+                    email: jsmith@example.com
+                    first_name: Jane
+                    last_name: Smith
+                    status: suspended
+                    role: employee
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Member:
+      type: object
+      description: An organization member with expense management access
+      properties:
+        id:
+          type: string
+          description: Unique member identifier
+          example: '500123'
+        email:
+          type: string
+          description: Member email address
+          example: jsmith@example.com
+        first_name:
+          type: string
+          description: Member first name
+          example: Jane
+        last_name:
+          type: string
+          description: Member last name
+          example: Smith
+        status:
+          type: string
+          description: Current member status
+          enum:
+          - active
+          - invited
+          - suspended
+          example: active
+        role:
+          type: string
+          description: Member role in the organization
+          enum:
+          - employee
+          - manager
+          - admin
+          example: employee
+        department:
+          type: string
+          description: Department the member belongs to
+          example: Engineering
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the member was created
+          example: '2025-01-15T09:00:00Z'
+    MemberListResponse:
+      type: object
+      description: Paginated list of members
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total:
+          type: integer
+          description: Total number of members
+          example: 125
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        per_page:
+          type: integer
+          description: Number of results per page
+          example: 25
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
+    InviteMemberRequest:
+      type: object
+      description: Request body for inviting a new member
+      required:
+      - email
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          description: Email address for the new member
+          example: newuser@example.com
+        first_name:
+          type: string
+          description: First name of the new member
+          example: John
+        last_name:
+          type: string
+          description: Last name of the new member
+          example: Doe
+        role:
+          type: string
+          description: Role to assign to the new member
+          enum:
+          - employee
+          - manager
+          - admin
+          default: employee
+          example: employee
+        department:
+          type: string
+          description: Department to assign the new member to
+          example: Engineering
+    UpdateMemberRequest:
+      type: object
+      description: Request body for updating an existing member
+      properties:
+        role:
+          type: string
+          description: New role for the member
+          enum:
+          - employee
+          - manager
+          - admin
+          example: manager
+        department:
+          type: string
+          description: New department for the member
+          example: Engineering
+        status:
+          type: string
+          description: New status for the member
+          enum:
+          - active
+          - suspended
+          example: active
+  responses:
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: not_found
+            message: The requested resource was not found
+    BadRequestError:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: bad_request
+            message: Invalid email address format
+    ForbiddenError:
+      description: Insufficient permissions for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: forbidden
+            message: You do not have permission to perform this action
+  parameters:
+    MemberId:
+      name: member_id
+      in: path
+      required: true
+      description: Unique identifier for the member
+      schema:
+        type: string
+      example: '500123'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials flow for API authentication
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.abacus.com/oauth/token
+          scopes:
+            members:read: Read member information
+            members:write: Create and update members
+            expenses:read: Read expense reports
