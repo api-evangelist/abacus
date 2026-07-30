@@ -2,7 +2,20 @@ aid: abacus
 url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/apis.yml
 name: Abacus
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/abacus.png
 tags:
 - Accounting
 - Expense Management
@@ -15,53 +28,132 @@ created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: abacus:abacus-api
-  name: Abacus API
-  tags:
-  - Expenses
-  - Finance
-  - Members
-  - Reimbursement
+- aid: abacus:abacus-authentication-api
+  name: Abacus Authentication API
+  description: OAuth 2.0 authentication operations
   humanURL: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
   baseURL: https://api.abacus.com
+  tags:
+  - Authentication
   properties:
-  - url: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
-    type: Documentation
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/openapi/abacus-api-openapi.yaml
-    type: OpenAPI
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-schema.json
-    type: JSONSchema
-    title: Member
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-schema.json
-    type: JSONSchema
-    title: Expense
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-invite-member-request-schema.json
-    type: JSONSchema
-    title: Invite Member Request
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-update-member-request-schema.json
-    type: JSONSchema
-    title: Update Member Request
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-list-response-schema.json
-    type: JSONSchema
-    title: Member List Response
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-list-response-schema.json
-    type: JSONSchema
-    title: Expense List Response
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-request-schema.json
-    type: JSONSchema
-    title: OAuth Token Request
-  - url: https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
-    type: JSONSchema
-    title: OAuth Token Response
+  - type: OpenAPI
+    url: openapi/abacus-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-invite-member-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-update-member-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
   - type: X-NaftikoCapability
     url: capabilities/abacus-authentication.yaml
   - type: X-NaftikoCapability
     url: capabilities/abacus-expenses.yaml
   - type: X-NaftikoCapability
     url: capabilities/abacus-members.yaml
-  description: The Abacus API provides programmatic access to expense management functionality, including inviting and suspending
-    members, listing and retrieving expense reports, and integrating with third-party platforms. Available to partners and
-    enterprise customers using OAuth 2.0 client credentials.
+- aid: abacus:abacus-expenses-api
+  name: Abacus Expenses API
+  description: Expense report management and operations
+  humanURL: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+  baseURL: https://api.abacus.com
+  tags:
+  - Expenses
+  properties:
+  - type: OpenAPI
+    url: openapi/abacus-expenses-api-openapi.yml
+  - type: Documentation
+    url: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-invite-member-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-update-member-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
+  - type: X-NaftikoCapability
+    url: capabilities/abacus-authentication.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/abacus-expenses.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/abacus-members.yaml
+- aid: abacus:abacus-members-api
+  name: Abacus Members API
+  description: Member management operations for inviting and managing expense users
+  humanURL: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+  baseURL: https://api.abacus.com
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/abacus-members-api-openapi.yml
+  - type: Documentation
+    url: https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-invite-member-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-update-member-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-member-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-expense-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-request-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
+  - type: X-NaftikoCapability
+    url: capabilities/abacus-authentication.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/abacus-expenses.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/abacus-members.yaml
 common:
 - type: AgenticAccess
   url: agentic-access/abacus-agentic-access.yml
