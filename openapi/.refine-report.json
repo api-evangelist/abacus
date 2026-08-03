@@ -1,0 +1,18 @@
+{
+  "provider": "abacus",
+  "sources": [
+    "abacus-authentication-api-openapi.yml",
+    "abacus-expenses-api-openapi.yml",
+    "abacus-members-api-openapi.yml"
+  ],
+  "outputs": [
+    "abacus-authentication-api-openapi.yml",
+    "abacus-expenses-api-openapi.yml",
+    "abacus-members-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
