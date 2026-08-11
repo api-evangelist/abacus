@@ -65,11 +65,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
   - type: X-NaftikoCapability
-    url: capabilities/abacus-authentication.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/abacus-expenses.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/abacus-members.yaml
+    url: authentication/abacus-authentication.yml
 - aid: abacus:abacus-expenses-api
   name: Abacus Expenses API
   description: Expense report management and operations
@@ -107,11 +103,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
   - type: X-NaftikoCapability
-    url: capabilities/abacus-authentication.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/abacus-expenses.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/abacus-members.yaml
+    url: authentication/abacus-authentication.yml
 - aid: abacus:abacus-members-api
   name: Abacus Members API
   description: Member management operations for inviting and managing expense users
@@ -149,11 +141,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/abacus/refs/heads/main/json-schema/abacus-oauth-token-response-schema.json
   - type: X-NaftikoCapability
-    url: capabilities/abacus-authentication.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/abacus-expenses.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/abacus-members.yaml
+    url: authentication/abacus-authentication.yml
 common:
 - type: AgenticAccess
   url: agentic-access/abacus-agentic-access.yml
