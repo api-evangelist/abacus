@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Abacus Authentication Expenses API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.abacus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Abacus List Expenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.abacus.com/expenses",
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "status",
+                "value": "pending",
+                "type": "query",
+                "description": "Filter by expense status"
+              },
+              {
+                "name": "member_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter expenses by member ID"
+              },
+              {
+                "name": "from_date",
+                "value": "2025-01-01",
+                "type": "query",
+                "description": "Filter expenses from this date (ISO 8601)"
+              },
+              {
+                "name": "to_date",
+                "value": "2025-03-31",
+                "type": "query",
+                "description": "Filter expenses to this date (ISO 8601)"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of expense reports for the organization."
+        },
+        {
+          "info": {
+            "name": "Abacus Get Expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.abacus.com/expenses/:expense_id",
+            "params": [
+              {
+                "name": "expense_id",
+                "value": "exp-500123",
+                "type": "path",
+                "description": "Unique identifier for the expense"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific expense report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

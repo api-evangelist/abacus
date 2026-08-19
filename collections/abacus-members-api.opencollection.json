@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Abacus Authentication Members API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.abacus.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Abacus List Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.abacus.com/members",
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all members in the organization."
+        },
+        {
+          "info": {
+            "name": "Abacus Invite Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.abacus.com/members",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invite a new member to the organization. Sends an invitation email to the specified address."
+        },
+        {
+          "info": {
+            "name": "Abacus Get Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.abacus.com/members/:member_id",
+            "params": [
+              {
+                "name": "member_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Unique identifier for the member"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific member by their ID."
+        },
+        {
+          "info": {
+            "name": "Abacus Update Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.abacus.com/members/:member_id",
+            "params": [
+              {
+                "name": "member_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Unique identifier for the member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update details for an existing member."
+        },
+        {
+          "info": {
+            "name": "Abacus Suspend Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.abacus.com/members/:member_id/suspend",
+            "params": [
+              {
+                "name": "member_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Unique identifier for the member"
+              }
+            ]
+          },
+          "docs": "Suspend a member from the organization, preventing them from submitting expenses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
