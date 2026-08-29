@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Abacus Authentication API
   version: 1.0.0
@@ -50,33 +50,19 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
   schemas:
-    OAuthTokenResponse:
+    Error:
       type: object
-      description: OAuth 2.0 access token response
+      description: Error response
       properties:
-        access_token:
+        error:
           type: string
-          description: Access token for API requests
-          example: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4
-        token_type:
+          description: Error code
+          example: invalid_request
+        message:
           type: string
-          description: Token type (always Bearer)
-          example: Bearer
-        expires_in:
-          type: integer
-          description: Token expiration time in seconds
-          example: 3600
+          description: Human-readable error message
+          example: The request is missing required parameters
     OAuthTokenRequest:
       type: object
       description: OAuth 2.0 token request using client credentials
@@ -99,18 +85,32 @@ components:
           type: string
           description: OAuth client secret
           example: example-client-secret
-    Error:
+    OAuthTokenResponse:
       type: object
-      description: Error response
+      description: OAuth 2.0 access token response
       properties:
-        error:
+        access_token:
           type: string
-          description: Error code
-          example: invalid_request
-        message:
+          description: Access token for API requests
+          example: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4
+        token_type:
           type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
+          description: Token type (always Bearer)
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+          example: 3600
+  responses:
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
   securitySchemes:
     OAuth2:
       type: oauth2

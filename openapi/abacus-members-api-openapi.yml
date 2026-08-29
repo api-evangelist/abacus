@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Abacus Authentication Members API
   version: 1.0.0
@@ -242,6 +242,43 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    BadRequestError:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: bad_request
+            message: Invalid email address format
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: not_found
+            message: The requested resource was not found
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
+    ForbiddenError:
+      description: Insufficient permissions for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: forbidden
+            message: You do not have permission to perform this action
   schemas:
     Member:
       type: object
@@ -288,6 +325,29 @@ components:
           format: date-time
           description: Timestamp when the member was created
           example: '2025-01-15T09:00:00Z'
+    UpdateMemberRequest:
+      type: object
+      description: Request body for updating an existing member
+      properties:
+        role:
+          type: string
+          description: New role for the member
+          enum:
+          - employee
+          - manager
+          - admin
+          example: manager
+        department:
+          type: string
+          description: New department for the member
+          example: Engineering
+        status:
+          type: string
+          description: New status for the member
+          enum:
+          - active
+          - suspended
+          example: active
     MemberListResponse:
       type: object
       description: Paginated list of members
@@ -308,18 +368,6 @@ components:
           type: integer
           description: Number of results per page
           example: 25
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
     InviteMemberRequest:
       type: object
       description: Request body for inviting a new member
@@ -353,66 +401,18 @@ components:
           type: string
           description: Department to assign the new member to
           example: Engineering
-    UpdateMemberRequest:
+    Error:
       type: object
-      description: Request body for updating an existing member
+      description: Error response
       properties:
-        role:
+        error:
           type: string
-          description: New role for the member
-          enum:
-          - employee
-          - manager
-          - admin
-          example: manager
-        department:
+          description: Error code
+          example: invalid_request
+        message:
           type: string
-          description: New department for the member
-          example: Engineering
-        status:
-          type: string
-          description: New status for the member
-          enum:
-          - active
-          - suspended
-          example: active
-  responses:
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: not_found
-            message: The requested resource was not found
-    BadRequestError:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: bad_request
-            message: Invalid email address format
-    ForbiddenError:
-      description: Insufficient permissions for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: forbidden
-            message: You do not have permission to perform this action
+          description: Human-readable error message
+          example: The request is missing required parameters
   parameters:
     MemberId:
       name: member_id
