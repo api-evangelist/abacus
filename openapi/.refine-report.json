@@ -1,9 +1,7 @@
 {
   "provider": "abacus",
   "sources": [
-    "abacus-authentication-api-openapi.yml",
-    "abacus-expenses-api-openapi.yml",
-    "abacus-members-api-openapi.yml"
+    "_ae-authored/abacus-api-openapi.yaml"
   ],
   "outputs": [
     "abacus-authentication-api-openapi.yml",
@@ -14,7 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "abacus-api-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "abacus-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "abacus-expenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "abacus-members-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

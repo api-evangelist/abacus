@@ -50,6 +50,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
   schemas:
     Error:
       type: object
@@ -101,16 +111,6 @@ components:
           type: integer
           description: Token expiration time in seconds
           example: 3600
-  responses:
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
   securitySchemes:
     OAuth2:
       type: oauth2

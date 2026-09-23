@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Abacus Authentication Expenses API
+  title: Abacus Expenses API
   version: 1.0.0
   description: The Abacus API (now part of Emburse Spend) provides programmatic access to expense management functionality, including member management and expense operations. Available to partners and enterprise customers using OAuth 2.0 authentication. The API enables third-party integrations with the Abacus expense platform for automating expense workflows, member provisioning, and data synchronization.
   contact:
@@ -173,15 +173,6 @@ components:
           example:
             error: forbidden
             message: You do not have permission to perform this action
-  parameters:
-    ExpenseId:
-      name: expense_id
-      in: path
-      required: true
-      description: Unique identifier for the expense
-      schema:
-        type: string
-      example: exp-500123
   schemas:
     Expense:
       type: object
@@ -247,6 +238,18 @@ components:
           format: date-time
           description: Timestamp when the expense was last updated
           example: '2025-03-16T10:00:00Z'
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
     ExpenseListResponse:
       type: object
       description: Paginated list of expenses
@@ -267,18 +270,15 @@ components:
           type: integer
           description: Number of results per page
           example: 25
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
+  parameters:
+    ExpenseId:
+      name: expense_id
+      in: path
+      required: true
+      description: Unique identifier for the expense
+      schema:
+        type: string
+      example: exp-500123
   securitySchemes:
     OAuth2:
       type: oauth2
