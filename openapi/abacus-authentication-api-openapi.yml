@@ -67,6 +67,18 @@ components:
           type: integer
           description: Token expiration time in seconds
           example: 3600
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
     OAuthTokenRequest:
       type: object
       description: OAuth 2.0 token request using client credentials
@@ -89,18 +101,6 @@ components:
           type: string
           description: OAuth client secret
           example: example-client-secret
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
   responses:
     UnauthorizedError:
       description: Authentication required or failed

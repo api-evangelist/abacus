@@ -243,6 +243,38 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    MemberListResponse:
+      type: object
+      description: Paginated list of members
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total:
+          type: integer
+          description: Total number of members
+          example: 125
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        per_page:
+          type: integer
+          description: Number of results per page
+          example: 25
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
     Member:
       type: object
       description: An organization member with expense management access
@@ -311,38 +343,6 @@ components:
           - active
           - suspended
           example: active
-    MemberListResponse:
-      type: object
-      description: Paginated list of members
-      properties:
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
-        total:
-          type: integer
-          description: Total number of members
-          example: 125
-        page:
-          type: integer
-          description: Current page number
-          example: 1
-        per_page:
-          type: integer
-          description: Number of results per page
-          example: 25
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
     InviteMemberRequest:
       type: object
       description: Request body for inviting a new member
@@ -377,24 +377,6 @@ components:
           description: Department to assign the new member to
           example: Engineering
   responses:
-    BadRequestError:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: bad_request
-            message: Invalid email address format
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
     ForbiddenError:
       description: Insufficient permissions for this operation
       content:
@@ -413,6 +395,24 @@ components:
           example:
             error: not_found
             message: The requested resource was not found
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
+    BadRequestError:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: bad_request
+            message: Invalid email address format
   parameters:
     MemberId:
       name: member_id
