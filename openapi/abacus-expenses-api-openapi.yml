@@ -145,67 +145,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    ForbiddenError:
-      description: Insufficient permissions for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: forbidden
-            message: You do not have permission to perform this action
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: not_found
-            message: The requested resource was not found
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
   schemas:
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
-    ExpenseListResponse:
-      type: object
-      description: Paginated list of expenses
-      properties:
-        expenses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Expense'
-        total:
-          type: integer
-          description: Total number of expenses
-          example: 250
-        page:
-          type: integer
-          description: Current page number
-          example: 1
-        per_page:
-          type: integer
-          description: Number of results per page
-          example: 25
     Expense:
       type: object
       description: An expense report submitted by a member
@@ -270,6 +210,66 @@ components:
           format: date-time
           description: Timestamp when the expense was last updated
           example: '2025-03-16T10:00:00Z'
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
+    ExpenseListResponse:
+      type: object
+      description: Paginated list of expenses
+      properties:
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expense'
+        total:
+          type: integer
+          description: Total number of expenses
+          example: 250
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        per_page:
+          type: integer
+          description: Number of results per page
+          example: 25
+  responses:
+    ForbiddenError:
+      description: Insufficient permissions for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: forbidden
+            message: You do not have permission to perform this action
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: not_found
+            message: The requested resource was not found
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
   parameters:
     ExpenseId:
       name: expense_id

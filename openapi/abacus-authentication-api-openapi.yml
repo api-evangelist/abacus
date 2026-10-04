@@ -50,6 +50,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
   schemas:
     OAuthTokenResponse:
       type: object
@@ -67,18 +77,6 @@ components:
           type: integer
           description: Token expiration time in seconds
           example: 3600
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
     OAuthTokenRequest:
       type: object
       description: OAuth 2.0 token request using client credentials
@@ -101,16 +99,18 @@ components:
           type: string
           description: OAuth client secret
           example: example-client-secret
-  responses:
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
   securitySchemes:
     OAuth2:
       type: oauth2
