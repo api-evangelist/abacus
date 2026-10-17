@@ -243,74 +243,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    InviteMemberRequest:
-      type: object
-      description: Request body for inviting a new member
-      required:
-      - email
-      - first_name
-      - last_name
-      properties:
-        email:
-          type: string
-          description: Email address for the new member
-          example: newuser@example.com
-        first_name:
-          type: string
-          description: First name of the new member
-          example: John
-        last_name:
-          type: string
-          description: Last name of the new member
-          example: Doe
-        role:
-          type: string
-          description: Role to assign to the new member
-          enum:
-          - employee
-          - manager
-          - admin
-          default: employee
-          example: employee
-        department:
-          type: string
-          description: Department to assign the new member to
-          example: Engineering
-    UpdateMemberRequest:
-      type: object
-      description: Request body for updating an existing member
-      properties:
-        role:
-          type: string
-          description: New role for the member
-          enum:
-          - employee
-          - manager
-          - admin
-          example: manager
-        department:
-          type: string
-          description: New department for the member
-          example: Engineering
-        status:
-          type: string
-          description: New status for the member
-          enum:
-          - active
-          - suspended
-          example: active
-    Error:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error message
-          example: The request is missing required parameters
     Member:
       type: object
       description: An organization member with expense management access
@@ -376,16 +308,75 @@ components:
           type: integer
           description: Number of results per page
           example: 25
+    InviteMemberRequest:
+      type: object
+      description: Request body for inviting a new member
+      required:
+      - email
+      - first_name
+      - last_name
+      properties:
+        email:
+          type: string
+          description: Email address for the new member
+          example: newuser@example.com
+        first_name:
+          type: string
+          description: First name of the new member
+          example: John
+        last_name:
+          type: string
+          description: Last name of the new member
+          example: Doe
+        role:
+          type: string
+          description: Role to assign to the new member
+          enum:
+          - employee
+          - manager
+          - admin
+          default: employee
+          example: employee
+        department:
+          type: string
+          description: Department to assign the new member to
+          example: Engineering
+    Error:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error message
+          example: The request is missing required parameters
+    UpdateMemberRequest:
+      type: object
+      description: Request body for updating an existing member
+      properties:
+        role:
+          type: string
+          description: New role for the member
+          enum:
+          - employee
+          - manager
+          - admin
+          example: manager
+        department:
+          type: string
+          description: New department for the member
+          example: Engineering
+        status:
+          type: string
+          description: New status for the member
+          enum:
+          - active
+          - suspended
+          example: active
   responses:
-    ForbiddenError:
-      description: Insufficient permissions for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: forbidden
-            message: You do not have permission to perform this action
     BadRequestError:
       description: Invalid request parameters
       content:
@@ -404,6 +395,15 @@ components:
           example:
             error: not_found
             message: The requested resource was not found
+    ForbiddenError:
+      description: Insufficient permissions for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: forbidden
+            message: You do not have permission to perform this action
     UnauthorizedError:
       description: Authentication required or failed
       content:

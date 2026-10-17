@@ -145,6 +145,34 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: not_found
+            message: The requested resource was not found
+    ForbiddenError:
+      description: Insufficient permissions for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: forbidden
+            message: You do not have permission to perform this action
+    UnauthorizedError:
+      description: Authentication required or failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unauthorized
+            message: Invalid or missing access token
   schemas:
     Expense:
       type: object
@@ -242,34 +270,6 @@ components:
           type: integer
           description: Number of results per page
           example: 25
-  responses:
-    ForbiddenError:
-      description: Insufficient permissions for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: forbidden
-            message: You do not have permission to perform this action
-    NotFoundError:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: not_found
-            message: The requested resource was not found
-    UnauthorizedError:
-      description: Authentication required or failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unauthorized
-            message: Invalid or missing access token
   parameters:
     ExpenseId:
       name: expense_id
