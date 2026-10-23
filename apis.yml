@@ -154,6 +154,8 @@ apis:
   - type: X-NaftikoCapability
     url: authentication/abacus-authentication.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/abacus/overview
 - type: Plans
   url: plans/abacus-plans-pricing.yml
 - type: RateLimits
