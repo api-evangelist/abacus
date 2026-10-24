@@ -1,499 +1,501 @@
 {
+  "info": {
+    "_postman_id": "47a504c8-5c8e-41fd-add1-41abc4c0ffda",
+    "name": "Abacus Expenses API",
+    "description": "The Abacus API (now part of Emburse Spend) provides programmatic access to expense management functionality, including member management and expense operations. Available to partners and enterprise customers using OAuth 2.0 authentication. The API enables third-party integrations with the Abacus expense platform for automating expense workflows, member provisioning, and data synchronization.\n\nContact Support:\n Name: Abacus Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:57:24.000Z",
+    "updatedAt": "2026-10-21T19:57:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-47a504c8-5c8e-41fd-add1-41abc4c0ffda"
+  },
   "item": [
     {
-      "id": "336a88ee-f2fb-42ab-9269-9f1f67cbdc38",
-      "name": "Expenses",
-      "description": {
-        "content": "Expense report management and operations",
-        "type": "text/plain"
-      },
+      "name": "expenses",
       "item": [
         {
-          "id": "ecedda66-7003-4213-ba72-c9011c63fb58",
+          "name": "{expense_id}",
+          "item": [
+            {
+              "name": "Abacus Get Expense",
+              "id": "3cdebd86-ec31-4286-9ce0-27c990352dd9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expenses/:expense_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expenses",
+                    ":expense_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9f922fdb-b295-4bf3-85c1-1705650e06c3",
+                      "key": "expense_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the expense"
+                    }
+                  ]
+                },
+                "description": "Retrieve details for a specific expense report."
+              },
+              "response": [
+                {
+                  "id": "05a47190-546d-4b3c-a087-6eb137d34e16",
+                  "name": "Expense details retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expenses/:expense_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expenses",
+                        ":expense_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expense_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"category\": \"software\",\n  \"description\": \"<string>\",\n  \"date\": \"<date>\",\n  \"status\": \"rejected\",\n  \"receipt_url\": \"<uri>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-21T19:57:24.000Z",
+                  "updatedAt": "2026-10-21T19:57:24.000Z",
+                  "uid": "35240-05a47190-546d-4b3c-a087-6eb137d34e16"
+                },
+                {
+                  "id": "503e667e-350b-4e66-afce-dedee41ed06e",
+                  "name": "Authentication required or failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expenses/:expense_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expenses",
+                        ":expense_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expense_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:24.000Z",
+                  "updatedAt": "2026-10-21T19:57:24.000Z",
+                  "uid": "35240-503e667e-350b-4e66-afce-dedee41ed06e"
+                },
+                {
+                  "id": "cb09bd1b-6cb1-4dd8-9e4d-e397161e8a31",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expenses/:expense_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expenses",
+                        ":expense_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expense_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:24.000Z",
+                  "updatedAt": "2026-10-21T19:57:24.000Z",
+                  "uid": "35240-cb09bd1b-6cb1-4dd8-9e4d-e397161e8a31"
+                }
+              ],
+              "createdAt": "2026-10-21T19:57:24.000Z",
+              "updatedAt": "2026-10-21T19:57:24.000Z",
+              "uid": "35240-3cdebd86-ec31-4286-9ce0-27c990352dd9"
+            }
+          ],
+          "id": "98e6bba4-6a28-4f48-bf7b-19fb81e742c0",
+          "createdAt": "2026-10-21T19:57:24.000Z",
+          "updatedAt": "2026-10-21T19:57:24.000Z",
+          "uid": "35240-98e6bba4-6a28-4f48-bf7b-19fb81e742c0"
+        },
+        {
           "name": "Abacus List Expenses",
+          "id": "bfd6daf5-c604-4d31-af3c-38b680b962f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Abacus List Expenses",
-            "description": {
-              "content": "Retrieve a list of expense reports for the organization.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/expenses?page=1&per_page=25&status=rejected&member_id=<string>&from_date=<date>&to_date=<date>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "expenses"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Page number for pagination",
                   "key": "page",
-                  "value": "1",
-                  "description": "Page number for pagination"
+                  "value": "1"
                 },
                 {
-                  "disabled": false,
+                  "description": "Number of results per page",
                   "key": "per_page",
-                  "value": "25",
-                  "description": "Number of results per page"
+                  "value": "25"
                 },
                 {
-                  "disabled": false,
+                  "description": "Filter by expense status",
                   "key": "status",
-                  "value": "<string>",
-                  "description": "Filter by expense status"
+                  "value": "rejected"
                 },
                 {
-                  "disabled": false,
+                  "description": "Filter expenses by member ID",
                   "key": "member_id",
-                  "value": "<string>",
-                  "description": "Filter expenses by member ID"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Filter expenses from this date (ISO 8601)",
                   "key": "from_date",
-                  "value": "<date>",
-                  "description": "Filter expenses from this date (ISO 8601)"
+                  "value": "<date>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Filter expenses to this date (ISO 8601)",
                   "key": "to_date",
-                  "value": "<date>",
-                  "description": "Filter expenses to this date (ISO 8601)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8c707235-b8a3-4fe3-ac87-9d23e67d6760",
-              "name": "List of expenses retrieved successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "expenses"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "status",
-                      "value": "pending"
-                    },
-                    {
-                      "key": "member_id",
-                      "value": "500123"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "2025-01-01"
-                    },
-                    {
-                      "key": "to_date",
-                      "value": "2025-03-31"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"expenses\": [\n    {\n      \"id\": \"exp-500123\",\n      \"member_id\": \"500123\",\n      \"amount\": 45.5,\n      \"currency\": \"USD\",\n      \"category\": \"meals\",\n      \"description\": \"Team lunch\",\n      \"date\": \"2025-03-15\",\n      \"status\": \"pending\"\n    }\n  ],\n  \"total\": 1,\n  \"page\": 1,\n  \"per_page\": 25\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "be341be9-2bfa-4250-8f17-f7980e64b8b6",
-              "name": "Authentication required or failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "expenses"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "status",
-                      "value": "pending"
-                    },
-                    {
-                      "key": "member_id",
-                      "value": "500123"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "2025-01-01"
-                    },
-                    {
-                      "key": "to_date",
-                      "value": "2025-03-31"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d4aebfe8-7fe6-4401-a3f3-06539362e8be",
-              "name": "Insufficient permissions for this operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "expenses"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "status",
-                      "value": "pending"
-                    },
-                    {
-                      "key": "member_id",
-                      "value": "500123"
-                    },
-                    {
-                      "key": "from_date",
-                      "value": "2025-01-01"
-                    },
-                    {
-                      "key": "to_date",
-                      "value": "2025-03-31"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5440944d-8b18-4b40-a026-890cb9e459a9",
-          "name": "Abacus Get Expense",
-          "request": {
-            "name": "Abacus Get Expense",
-            "description": {
-              "content": "Retrieve details for a specific expense report.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "expenses",
-                ":expense_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "expense_id",
-                  "description": "(Required) Unique identifier for the expense"
+                  "value": "<date>"
                 }
               ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Retrieve a list of expense reports for the organization."
           },
           "response": [
             {
-              "id": "ce179b63-3d6b-4530-b080-354d4906442d",
-              "name": "Expense details retrieved successfully",
+              "id": "9eeb43e6-5fae-46a2-b8cf-6a09538823d9",
+              "name": "List of expenses retrieved successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "expenses",
-                    ":expense_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "expense_id",
-                      "description": "(Required) Unique identifier for the expense"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/expenses?page=1&per_page=25&status=rejected&member_id=<string>&from_date=<date>&to_date=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expenses"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Filter by expense status",
+                      "key": "status",
+                      "value": "rejected"
+                    },
+                    {
+                      "description": "Filter expenses by member ID",
+                      "key": "member_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expenses from this date (ISO 8601)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter expenses to this date (ISO 8601)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"exp-500123\",\n  \"member_id\": \"500123\",\n  \"amount\": 45.5,\n  \"currency\": \"USD\",\n  \"category\": \"meals\",\n  \"description\": \"Team lunch\",\n  \"date\": \"2025-03-15\",\n  \"status\": \"pending\",\n  \"receipt_url\": \"https://portal.example.com/path/abc123\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"expenses\": [\n    {\n      \"id\": \"<string>\",\n      \"member_id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"category\": \"software\",\n      \"description\": \"<string>\",\n      \"date\": \"<date>\",\n      \"status\": \"approved\",\n      \"receipt_url\": \"<uri>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"member_id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"category\": \"software\",\n      \"description\": \"<string>\",\n      \"date\": \"<date>\",\n      \"status\": \"pending\",\n      \"receipt_url\": \"<uri>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\"\n}",
+              "createdAt": "2026-10-21T19:57:24.000Z",
+              "updatedAt": "2026-10-21T19:57:24.000Z",
+              "uid": "35240-9eeb43e6-5fae-46a2-b8cf-6a09538823d9"
             },
             {
-              "id": "8772cd78-1629-4668-b0a5-39b8de1f9e22",
+              "id": "ba937db3-fd52-4b14-a84c-cb971ffbcd8a",
               "name": "Authentication required or failed",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "expenses",
-                    ":expense_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "expense_id",
-                      "description": "(Required) Unique identifier for the expense"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/expenses?page=1&per_page=25&status=rejected&member_id=<string>&from_date=<date>&to_date=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expenses"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Filter by expense status",
+                      "key": "status",
+                      "value": "rejected"
+                    },
+                    {
+                      "description": "Filter expenses by member ID",
+                      "key": "member_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expenses from this date (ISO 8601)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter expenses to this date (ISO 8601)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:24.000Z",
+              "updatedAt": "2026-10-21T19:57:24.000Z",
+              "uid": "35240-ba937db3-fd52-4b14-a84c-cb971ffbcd8a"
             },
             {
-              "id": "f0982755-c295-472d-86d4-d9aaae319b6d",
-              "name": "Resource not found",
+              "id": "a5636619-d03f-4ab9-909e-b13a09df7050",
+              "name": "Insufficient permissions for this operation",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "expenses",
-                    ":expense_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "expense_id",
-                      "description": "(Required) Unique identifier for the expense"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/expenses?page=1&per_page=25&status=rejected&member_id=<string>&from_date=<date>&to_date=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expenses"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Filter by expense status",
+                      "key": "status",
+                      "value": "rejected"
+                    },
+                    {
+                      "description": "Filter expenses by member ID",
+                      "key": "member_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expenses from this date (ISO 8601)",
+                      "key": "from_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filter expenses to this date (ISO 8601)",
+                      "key": "to_date",
+                      "value": "<date>"
+                    }
+                  ]
+                }
               },
-              "status": "Not Found",
-              "code": 404,
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested resource was not found\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:24.000Z",
+              "updatedAt": "2026-10-21T19:57:24.000Z",
+              "uid": "35240-a5636619-d03f-4ab9-909e-b13a09df7050"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:57:24.000Z",
+          "updatedAt": "2026-10-21T19:57:24.000Z",
+          "uid": "35240-bfd6daf5-c604-4d31-af3c-38b680b962f2"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.abacus.com",
-      "key": "baseUrl"
+      "id": "01167e93-72fa-4926-abcc-39e99b52650e",
+      "createdAt": "2026-10-21T19:57:24.000Z",
+      "updatedAt": "2026-10-21T19:57:24.000Z",
+      "uid": "35240-01167e93-72fa-4926-abcc-39e99b52650e"
     }
   ],
   "auth": {
@@ -501,25 +503,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "members:read members:write expenses:read"
+        "value": "members:read members:write expenses:read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://api.abacus.com/oauth/token"
+        "value": "https://api.abacus.com/oauth/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "01150991-b07b-452e-b9be-30df66d9308d",
-    "name": "Abacus Authentication Expenses API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Abacus API (now part of Emburse Spend) provides programmatic access to expense management functionality, including member management and expense operations. Available to partners and enterprise customers using OAuth 2.0 authentication. The API enables third-party integrations with the Abacus expense platform for automating expense workflows, member provisioning, and data synchronization.\n\nContact Support:\n Name: Abacus Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.abacus.com"
     }
-  }
+  ]
 }

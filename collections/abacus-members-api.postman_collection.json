@@ -1,236 +1,923 @@
 {
+  "info": {
+    "_postman_id": "2ca4e790-5e24-43ba-a9a9-aabfb4fe2a5c",
+    "name": "Abacus Members API",
+    "description": "The Abacus API (now part of Emburse Spend) provides programmatic access to expense management functionality, including member management and expense operations. Available to partners and enterprise customers using OAuth 2.0 authentication. The API enables third-party integrations with the Abacus expense platform for automating expense workflows, member provisioning, and data synchronization.\n\nContact Support:\n Name: Abacus Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:57:27.000Z",
+    "updatedAt": "2026-10-21T19:57:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2ca4e790-5e24-43ba-a9a9-aabfb4fe2a5c"
+  },
   "item": [
     {
-      "id": "4915c266-0864-4ccf-8e34-ed618f7ad310",
-      "name": "Members",
-      "description": {
-        "content": "Member management operations for inviting and managing expense users",
-        "type": "text/plain"
-      },
+      "name": "members",
       "item": [
         {
-          "id": "4a52f70e-9b3c-4b89-9afe-dbb33235063c",
-          "name": "Abacus List Members",
-          "request": {
-            "name": "Abacus List Members",
-            "description": {
-              "content": "Retrieve a list of all members in the organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "members"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{member_id}",
+          "item": [
+            {
+              "name": "suspend",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "Page number for pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Number of results per page"
+                  "name": "Abacus Suspend Member",
+                  "id": "8971baab-a815-4844-a1c2-339e8cb2b694",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id/suspend",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id",
+                        "suspend"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c09337e0-6cb8-451a-8dad-5946609aa30b",
+                          "key": "member_id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier for the member"
+                        }
+                      ]
+                    },
+                    "description": "Suspend a member from the organization, preventing them from submitting expenses."
+                  },
+                  "response": [
+                    {
+                      "id": "fb3d61b1-bd56-48d6-b441-24783d8cc4be",
+                      "name": "Member suspended successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/members/:member_id/suspend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "members",
+                            ":member_id",
+                            "suspend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "member_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"status\": \"suspended\",\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T19:57:28.000Z",
+                      "updatedAt": "2026-10-21T19:57:28.000Z",
+                      "uid": "35240-fb3d61b1-bd56-48d6-b441-24783d8cc4be"
+                    },
+                    {
+                      "id": "6baefdea-9c23-4ba4-b5cd-5d1cc98895cb",
+                      "name": "Authentication required or failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/members/:member_id/suspend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "members",
+                            ":member_id",
+                            "suspend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "member_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T19:57:28.000Z",
+                      "updatedAt": "2026-10-21T19:57:28.000Z",
+                      "uid": "35240-6baefdea-9c23-4ba4-b5cd-5d1cc98895cb"
+                    },
+                    {
+                      "id": "377d84ee-9e40-4caa-96bb-f336b2fe7fd7",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/members/:member_id/suspend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "members",
+                            ":member_id",
+                            "suspend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "member_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T19:57:28.000Z",
+                      "updatedAt": "2026-10-21T19:57:28.000Z",
+                      "uid": "35240-377d84ee-9e40-4caa-96bb-f336b2fe7fd7"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-8971baab-a815-4844-a1c2-339e8cb2b694"
                 }
               ],
-              "variable": []
+              "id": "0f69e5b4-6d7a-4c54-9b52-cb197d303d7c",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-0f69e5b4-6d7a-4c54-9b52-cb197d303d7c"
             },
+            {
+              "name": "Abacus Get Member",
+              "id": "afcc1d1d-202d-42ec-8917-f9e5b994ac07",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/members/:member_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members",
+                    ":member_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a9882b1c-76eb-480c-b903-fbe823bb0303",
+                      "key": "member_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the member"
+                    }
+                  ]
+                },
+                "description": "Retrieve details for a specific member by their ID."
+              },
+              "response": [
+                {
+                  "id": "42a3dc78-a9bd-4048-ad9c-15fd429445de",
+                  "name": "Member details retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"status\": \"suspended\",\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-42a3dc78-a9bd-4048-ad9c-15fd429445de"
+                },
+                {
+                  "id": "0437e72f-936b-4acc-8627-3f944124260f",
+                  "name": "Authentication required or failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-0437e72f-936b-4acc-8627-3f944124260f"
+                },
+                {
+                  "id": "a127902f-15ff-4de6-b65e-6f382ccdbf6d",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-a127902f-15ff-4de6-b65e-6f382ccdbf6d"
+                }
+              ],
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-afcc1d1d-202d-42ec-8917-f9e5b994ac07"
+            },
+            {
+              "name": "Abacus Update Member",
+              "id": "19825e02-de31-4827-b759-0b060904b0be",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"status\": \"suspended\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/members/:member_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members",
+                    ":member_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2bde3634-5801-437f-b451-f51ad202fdf8",
+                      "key": "member_id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the member"
+                    }
+                  ]
+                },
+                "description": "Update details for an existing member."
+              },
+              "response": [
+                {
+                  "id": "7335d64c-fee5-4ff2-bb54-d6e8abd6b547",
+                  "name": "Member updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"status\": \"suspended\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"status\": \"suspended\",\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-7335d64c-fee5-4ff2-bb54-d6e8abd6b547"
+                },
+                {
+                  "id": "269859af-3658-4f70-95f3-0504b031f9c8",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"status\": \"suspended\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-269859af-3658-4f70-95f3-0504b031f9c8"
+                },
+                {
+                  "id": "fdd863b0-d15f-4f6d-a905-2d692d9386ca",
+                  "name": "Authentication required or failed",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"status\": \"suspended\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-fdd863b0-d15f-4f6d-a905-2d692d9386ca"
+                },
+                {
+                  "id": "481721d6-a720-4a47-bc04-ea13cb181520",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"status\": \"suspended\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/members/:member_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "members",
+                        ":member_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "member_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:57:28.000Z",
+                  "updatedAt": "2026-10-21T19:57:28.000Z",
+                  "uid": "35240-481721d6-a720-4a47-bc04-ea13cb181520"
+                }
+              ],
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-19825e02-de31-4827-b759-0b060904b0be"
+            }
+          ],
+          "id": "3fac5935-d5ca-4298-87fa-9d07c097535d",
+          "createdAt": "2026-10-21T19:57:28.000Z",
+          "updatedAt": "2026-10-21T19:57:28.000Z",
+          "uid": "35240-3fac5935-d5ca-4298-87fa-9d07c097535d"
+        },
+        {
+          "name": "Abacus List Members",
+          "id": "944ad9a7-e0ad-4d07-8a12-27f9d75ca63b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e0a0b9d2-3111-408a-bcad-cfc38964d424",
-              "name": "List of members retrieved successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"members\": [\n    {\n      \"id\": \"500123\",\n      \"email\": \"jsmith@example.com\",\n      \"first_name\": \"Jane\",\n      \"last_name\": \"Smith\",\n      \"status\": \"active\",\n      \"role\": \"employee\"\n    }\n  ],\n  \"total\": 1,\n  \"page\": 1,\n  \"per_page\": 25\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "25ca7968-0b25-4d6c-bec8-9564081d4e11",
-              "name": "Authentication required or failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "05bc209c-5e36-4408-9372-e9dae0a43777",
-              "name": "Insufficient permissions for this operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "699dbf68-7750-4113-9180-170c5f79feb2",
-          "name": "Abacus Invite Member",
-          "request": {
-            "name": "Abacus Invite Member",
-            "description": {
-              "content": "Invite a new member to the organization. Sends an invitation email to the specified address.",
-              "type": "text/plain"
-            },
             "url": {
-              "path": [
-                "members"
-              ],
+              "raw": "{{baseUrl}}/members?page=1&per_page=25",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "members"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of results per page",
+                  "key": "per_page",
+                  "value": "25"
+                }
+              ]
             },
+            "description": "Retrieve a list of all members in the organization."
+          },
+          "response": [
+            {
+              "id": "680a4d7d-20f1-4135-bd22-4847568af881",
+              "name": "List of members retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/members?page=1&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"status\": \"suspended\",\n      \"role\": \"employee\",\n      \"department\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"status\": \"active\",\n      \"role\": \"manager\",\n      \"department\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-680a4d7d-20f1-4135-bd22-4847568af881"
+            },
+            {
+              "id": "2369e81f-3b1c-44ca-bbb8-152c77bd8326",
+              "name": "Authentication required or failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/members?page=1&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-2369e81f-3b1c-44ca-bbb8-152c77bd8326"
+            },
+            {
+              "id": "042b262c-c27d-4ea8-90e3-5e2ac93f7a30",
+              "name": "Insufficient permissions for this operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/members?page=1&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-042b262c-c27d-4ea8-90e3-5e2ac93f7a30"
+            }
+          ],
+          "createdAt": "2026-10-21T19:57:28.000Z",
+          "updatedAt": "2026-10-21T19:57:28.000Z",
+          "uid": "35240-944ad9a7-e0ad-4d07-8a12-27f9d75ca63b"
+        },
+        {
+          "name": "Abacus Invite Member",
+          "id": "0d6f83ee-8f25-476d-a2c7-5970172f3bb6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -241,991 +928,318 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"employee\",\n  \"department\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/members",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "members"
+              ]
+            },
+            "description": "Invite a new member to the organization. Sends an invitation email to the specified address."
           },
           "response": [
             {
-              "id": "2e8686e7-ad02-4515-a97e-80188fd35d2a",
+              "id": "0ee89225-96fe-4489-83b6-f7461db8d737",
               "name": "Member invited successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"role\": \"employee\"\n}",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"employee\",\n  \"department\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/members",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"500456\",\n  \"email\": \"newuser@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"status\": \"invited\",\n  \"role\": \"employee\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"status\": \"suspended\",\n  \"role\": \"manager\",\n  \"department\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-0ee89225-96fe-4489-83b6-f7461db8d737"
             },
             {
-              "id": "5c0aa8a8-0ddc-4aaa-9762-b4c727cb8fa9",
+              "id": "c868b735-3aa0-4d85-b6fe-42ab86ed428a",
               "name": "Invalid request parameters",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"role\": \"employee\"\n}",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"employee\",\n  \"department\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/members",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"bad_request\",\n  \"message\": \"Invalid email address format\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-c868b735-3aa0-4d85-b6fe-42ab86ed428a"
             },
             {
-              "id": "f1d8bc3b-28c8-4f4d-a598-c4ed285767e6",
+              "id": "144ed672-fbe6-4741-8474-77f9ceedf899",
               "name": "Authentication required or failed",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"role\": \"employee\"\n}",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"employee\",\n  \"department\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/members",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-144ed672-fbe6-4741-8474-77f9ceedf899"
             },
             {
-              "id": "ca6c2ff0-d381-4d89-bb25-4710a82c8dcc",
+              "id": "35e21ae8-44cb-4dbe-8ad7-3b03443f319f",
               "name": "Insufficient permissions for this operation",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"role\": \"employee\"\n}",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"employee\",\n  \"department\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/members",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ]
                 }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"forbidden\",\n  \"message\": \"You do not have permission to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-35e21ae8-44cb-4dbe-8ad7-3b03443f319f"
             },
             {
-              "id": "0000f5fc-cc69-4bae-bac2-96fae16831cf",
+              "id": "36d5ba1c-14a7-4c77-9c61-bdb9cbb9ac7d",
               "name": "Member already exists",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "members"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"role\": \"employee\"\n}",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"role\": \"employee\",\n  \"department\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/members",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "members"
+                  ]
                 }
               },
               "status": "Conflict",
               "code": 409,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The request is missing required parameters\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:57:28.000Z",
+              "updatedAt": "2026-10-21T19:57:28.000Z",
+              "uid": "35240-36d5ba1c-14a7-4c77-9c61-bdb9cbb9ac7d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b2431717-1c41-43b3-aa8a-abbdb005a0cb",
-          "name": "Abacus Get Member",
-          "request": {
-            "name": "Abacus Get Member",
-            "description": {
-              "content": "Retrieve details for a specific member by their ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "members",
-                ":member_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "member_id",
-                  "description": "(Required) Unique identifier for the member"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "62e0bde6-5ac3-4015-987f-b8641df8b2fd",
-              "name": "Member details retrieved successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"500123\",\n  \"email\": \"jsmith@example.com\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"status\": \"active\",\n  \"role\": \"employee\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "89a11b92-73bd-47ca-93e6-42e754459030",
-              "name": "Authentication required or failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c5b514e5-09d3-48c0-8771-79e4193814f2",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested resource was not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7ec059ba-05ec-43c0-a370-8f34968e0ea2",
-          "name": "Abacus Update Member",
-          "request": {
-            "name": "Abacus Update Member",
-            "description": {
-              "content": "Update details for an existing member.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "members",
-                ":member_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "member_id",
-                  "description": "(Required) Unique identifier for the member"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"role\": \"<string>\",\n  \"department\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "fa07eacd-7e06-4263-a236-a735dcd983f4",
-              "name": "Member updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"Engineering\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"500123\",\n  \"email\": \"jsmith@example.com\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"status\": \"active\",\n  \"role\": \"manager\",\n  \"department\": \"Engineering\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1642a833-041e-4545-92ac-4b633818f0e9",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"Engineering\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"bad_request\",\n  \"message\": \"Invalid email address format\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a8ef040c-f9f0-49db-967a-81c5e57f02a0",
-              "name": "Authentication required or failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"Engineering\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "935972cd-5494-4b64-ad12-41aeccbc8498",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"role\": \"manager\",\n  \"department\": \"Engineering\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested resource was not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "07bd462f-22cf-470c-9cc2-210feae3ec98",
-          "name": "Abacus Suspend Member",
-          "request": {
-            "name": "Abacus Suspend Member",
-            "description": {
-              "content": "Suspend a member from the organization, preventing them from submitting expenses.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "members",
-                ":member_id",
-                "suspend"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "member_id",
-                  "description": "(Required) Unique identifier for the member"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "85a2971d-44cd-479c-86f4-65d025bed34c",
-              "name": "Member suspended successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id",
-                    "suspend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"500123\",\n  \"email\": \"jsmith@example.com\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"status\": \"suspended\",\n  \"role\": \"employee\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b0feec0e-38cc-4f06-bfef-f4dcebf0685b",
-              "name": "Authentication required or failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id",
-                    "suspend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Invalid or missing access token\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ad797809-8150-4bee-b963-de6a162a8dd7",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "members",
-                    ":member_id",
-                    "suspend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "member_id",
-                      "description": "(Required) Unique identifier for the member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested resource was not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:57:28.000Z",
+          "updatedAt": "2026-10-21T19:57:28.000Z",
+          "uid": "35240-0d6f83ee-8f25-476d-a2c7-5970172f3bb6"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.abacus.com",
-      "key": "baseUrl"
+      "id": "dcd323de-69e3-4db2-921c-d4a16b2361fc",
+      "createdAt": "2026-10-21T19:57:28.000Z",
+      "updatedAt": "2026-10-21T19:57:28.000Z",
+      "uid": "35240-dcd323de-69e3-4db2-921c-d4a16b2361fc"
     }
   ],
   "auth": {
@@ -1233,25 +1247,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "members:read members:write expenses:read"
+        "value": "members:read members:write expenses:read",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://api.abacus.com/oauth/token"
+        "value": "https://api.abacus.com/oauth/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "cc4742f5-f092-49b4-8d5c-44a8f1ec9063",
-    "name": "Abacus Authentication Members API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Abacus API (now part of Emburse Spend) provides programmatic access to expense management functionality, including member management and expense operations. Available to partners and enterprise customers using OAuth 2.0 authentication. The API enables third-party integrations with the Abacus expense platform for automating expense workflows, member provisioning, and data synchronization.\n\nContact Support:\n Name: Abacus Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.abacus.com"
     }
-  }
+  ]
 }
