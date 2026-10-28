@@ -1,4 +1,4 @@
-# Abacus (abacus)
+# Abacus
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,154 +66,185 @@
 
 Abacus (now part of Emburse Spend) is an expense management platform that allows businesses to streamline expense reporting, receipts, and reimbursements. The Abacus API is available to partners and enterprise customers, providing programmatic access to member management and expense operations using OAuth 2.0 authentication.
 
-**URL:** [https://www.abacus.com/](https://www.abacus.com/)
+**Areas:** Accounting · Expense Management · Finance · Reimbursement
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=abacus-api-evangelist&utm_content=repo)
+## Abacus on APIs.io
 
-## Tags:
+Everything profiled for Abacus is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/abacus/](https://apis.io/providers/abacus/)** — or go straight to one of the APIs or properties below.
 
- - Accounting, Expense Management, Finance, Reimbursement
+### APIs (3)
 
-## Timestamps
+- [Abacus Authentication API](https://apis.io/apis/abacus/abacus-authentication-api/) — OAuth 2.0 authentication operations
+- [Abacus Expenses API](https://apis.io/apis/abacus/abacus-expenses-api/) — Expense report management and operations
+- [Abacus Members API](https://apis.io/apis/abacus/abacus-members-api/) — Member management operations for inviting and managing expense users
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Abacus API
-The Abacus API provides programmatic access to expense management functionality, including inviting and suspending members, listing and retrieving expense reports, and integrating with third-party platforms. Available to partners and enterprise customers using OAuth 2.0 client credentials.
+#### Agentic access (1)
 
-**Human URL:** [https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API](https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Abacus Agentic Access](https://apis.io/agentic-access/abacus/abacus-agentic-access/)
 
- - Expenses, Finance, Members, Reimbursement
+#### JSON Schema (8)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API)
-- [OpenAPI](openapi/abacus-api-openapi.yaml)
-- [JSONSchema - Member](json-schema/abacus-member-schema.json)
-- [JSONSchema - Expense](json-schema/abacus-expense-schema.json)
-- [JSONSchema - Invite Member Request](json-schema/abacus-invite-member-request-schema.json)
-- [JSONSchema - Update Member Request](json-schema/abacus-update-member-request-schema.json)
-- [JSONSchema - Member List Response](json-schema/abacus-member-list-response-schema.json)
-- [JSONSchema - Expense List Response](json-schema/abacus-expense-list-response-schema.json)
-- [JSONSchema - OAuth Token Request](json-schema/abacus-oauth-token-request-schema.json)
-- [JSONSchema - OAuth Token Response](json-schema/abacus-oauth-token-response-schema.json)
+- [Expense](https://apis.io/schemas/abacus/abacus-expense/)
+- [ExpenseListResponse](https://apis.io/schemas/abacus/abacus-expense-list-response/)
+- [InviteMemberRequest](https://apis.io/schemas/abacus/abacus-invite-member-request/)
+- [Member](https://apis.io/schemas/abacus/abacus-member/)
+- [MemberListResponse](https://apis.io/schemas/abacus/abacus-member-list-response/)
+- [OAuthTokenRequest](https://apis.io/schemas/abacus/abacus-oauth-token-request/)
+- [OAuthTokenResponse](https://apis.io/schemas/abacus/abacus-oauth-token-response/)
+- [UpdateMemberRequest](https://apis.io/schemas/abacus/abacus-update-member-request/)
 
-## Common Properties
+#### JSON Structure (8)
+
+Data models expressed in JSON Structure.
+
+- [Abacus Expense List Response Structure](https://apis.io/json-structure/abacus/abacus-expense-list-response-structure/)
+- [Abacus Expense Structure](https://apis.io/json-structure/abacus/abacus-expense-structure/)
+- [Abacus Invite Member Request Structure](https://apis.io/json-structure/abacus/abacus-invite-member-request-structure/)
+- [Abacus Member List Response Structure](https://apis.io/json-structure/abacus/abacus-member-list-response-structure/)
+- [Abacus Member Structure](https://apis.io/json-structure/abacus/abacus-member-structure/)
+- [Abacus Oauth Token Request Structure](https://apis.io/json-structure/abacus/abacus-oauth-token-request-structure/)
+- [Abacus Oauth Token Response Structure](https://apis.io/json-structure/abacus/abacus-oauth-token-response-structure/)
+- [Abacus Update Member Request Structure](https://apis.io/json-structure/abacus/abacus-update-member-request-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Abacus Api Context](https://apis.io/jsonld/abacus/abacus-api-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Abacus Vocabulary](https://apis.io/vocabularies/abacus/abacus-vocabulary/)
+
+#### Examples (8)
+
+Example requests and responses.
+
+- [Abacus Expense Example](https://apis.io/examples/abacus/abacus-expense-example/)
+- [Abacus Expense List Response Example](https://apis.io/examples/abacus/abacus-expense-list-response-example/)
+- [Abacus Invite Member Request Example](https://apis.io/examples/abacus/abacus-invite-member-request-example/)
+- [Abacus Member Example](https://apis.io/examples/abacus/abacus-member-example/)
+- [Abacus Member List Response Example](https://apis.io/examples/abacus/abacus-member-list-response-example/)
+- [Abacus Oauth Token Request Example](https://apis.io/examples/abacus/abacus-oauth-token-request-example/)
+- [Abacus Oauth Token Response Example](https://apis.io/examples/abacus/abacus-oauth-token-response-example/)
+- [Abacus Update Member Request Example](https://apis.io/examples/abacus/abacus-update-member-request-example/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Abacus Authentication API](https://apis.io/collections/abacus/open-abacus-authentication-api/)
+- [Abacus Authentication Expenses API](https://apis.io/collections/abacus/open-abacus-expenses-api/)
+- [Abacus Authentication Members API](https://apis.io/collections/abacus/open-abacus-members-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Abacus — jsonschema rules](https://apis.io/rules/abacus/abacus-jsonschema-spectral-rules/)
+- [Abacus API Rules](https://apis.io/rules/abacus/abacus-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Abacus Authentication](https://apis.io/security/abacus/abacus-authentication/)
+- [Abacus Domain Security](https://apis.io/security/abacus/abacus-domain-security/)
+- [Abacus Vulnerability Disclosure](https://apis.io/security/abacus/abacus-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Abacus Scopes](https://apis.io/scopes/abacus/abacus-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Abacus Plans Pricing](https://apis.io/plans/abacus/abacus-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Abacus Rate Limits](https://apis.io/rate-limits/abacus/abacus-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Abacus Finops](https://apis.io/finops/abacus/abacus-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.abacus.com/)
 - [Documentation](https://support.abacus.com/hc/en-us/articles/12493681200269-Abacus-API)
 - [Support](https://support.abacus.com/)
-- [PrivacyPolicy](https://legal.emburse.com/)
-- [TrustCenter](https://trust.emburse.com/)
-- [SpectralRules](rules/abacus-spectral-rules.yml)
-- [Vocabulary](vocabulary/abacus-vocabulary.yaml)
-- [NaftikoCapability](capabilities/expense-management.yaml)
-- [JSONLD](json-ld/abacus-api-context.jsonld)
+- [Trust centre](https://trust.emburse.com/)
+- [Privacy policy](https://legal.emburse.com/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Member Management | Invite, update, and suspend organization members programmatically |
-| Expense Tracking | Retrieve and filter expense reports by status, member, and date range |
-| OAuth 2.0 Authentication | Secure API access using client credentials grant flow |
-| Receipt Management | Link receipts to expense reports via URL references |
-| Multi-category Expenses | Categorize expenses across meals, travel, lodging, office supplies, and software |
-| Paginated Results | Paginated API responses with configurable page sizes |
+**Kin Score 28.4** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 27.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 26.3 |
 
-| Name | Description |
-|------|-------------|
-| Employee Onboarding | Automatically invite new employees to the expense platform via API |
-| Employee Offboarding | Programmatically suspend departed employees from expense access |
-| Expense Reconciliation | Retrieve and reconcile expense reports for accounting integration |
-| Spend Analytics | Pull expense data by category, member, or date range for reporting |
-| Third-party Integration | Connect Abacus expense data with ERP and accounting systems |
+**Agent readiness 25.8** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| QuickBooks | Sync expense data with QuickBooks for accounting reconciliation |
-| Xero | Integrate with Xero for automated expense accounting |
-| NetSuite | Connect expense reports with NetSuite ERP |
-| Sage Intacct | Sync expenses with Sage Intacct for financial management |
+**Regulatory alignment 41.2** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/abacus/](https://apis.io/providers/abacus/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Abacus API](openapi/abacus-api-openapi.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Abacus: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [abacus-member-schema.json](json-schema/abacus-member-schema.json)
-- [abacus-invite-member-request-schema.json](json-schema/abacus-invite-member-request-schema.json)
-- [abacus-update-member-request-schema.json](json-schema/abacus-update-member-request-schema.json)
-- [abacus-member-list-response-schema.json](json-schema/abacus-member-list-response-schema.json)
-- [abacus-expense-schema.json](json-schema/abacus-expense-schema.json)
-- [abacus-expense-list-response-schema.json](json-schema/abacus-expense-list-response-schema.json)
-- [abacus-oauth-token-request-schema.json](json-schema/abacus-oauth-token-request-schema.json)
-- [abacus-oauth-token-response-schema.json](json-schema/abacus-oauth-token-response-schema.json)
-
-### JSON Structure
-
-- [abacus-member-structure.json](json-structure/abacus-member-structure.json)
-- [abacus-invite-member-request-structure.json](json-structure/abacus-invite-member-request-structure.json)
-- [abacus-update-member-request-structure.json](json-structure/abacus-update-member-request-structure.json)
-- [abacus-member-list-response-structure.json](json-structure/abacus-member-list-response-structure.json)
-- [abacus-expense-structure.json](json-structure/abacus-expense-structure.json)
-- [abacus-expense-list-response-structure.json](json-structure/abacus-expense-list-response-structure.json)
-- [abacus-oauth-token-request-structure.json](json-structure/abacus-oauth-token-request-structure.json)
-- [abacus-oauth-token-response-structure.json](json-structure/abacus-oauth-token-response-structure.json)
-
-### JSON-LD
-
-- [abacus-api-context.jsonld](json-ld/abacus-api-context.jsonld)
-
-### Examples
-
-- [abacus-member-example.json](examples/abacus-member-example.json)
-- [abacus-invite-member-request-example.json](examples/abacus-invite-member-request-example.json)
-- [abacus-update-member-request-example.json](examples/abacus-update-member-request-example.json)
-- [abacus-member-list-response-example.json](examples/abacus-member-list-response-example.json)
-- [abacus-expense-example.json](examples/abacus-expense-example.json)
-- [abacus-expense-list-response-example.json](examples/abacus-expense-list-response-example.json)
-- [abacus-oauth-token-request-example.json](examples/abacus-oauth-token-request-example.json)
-- [abacus-oauth-token-response-example.json](examples/abacus-oauth-token-response-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Abacus API](capabilities/shared/abacus-api.yaml) — 7 operations for expense management and member administration
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Expense Management](capabilities/expense-management.yaml) | Abacus API | 7 | Finance Administrator, HR Manager |
-
-## Vocabulary
-
-- [Abacus Vocabulary](vocabulary/abacus-vocabulary.yaml) — Unified taxonomy mapping 2 resources, 5 actions, 1 workflow, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Abacus Spectral Rules](rules/abacus-spectral-rules.yml) — 42 rules across 13 categories enforcing Abacus API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/abacus/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
